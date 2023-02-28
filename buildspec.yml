@@ -1,0 +1,10 @@
+version: 1.0.0
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+artifacts:
+  files:
+    - target/earthquakeAPI-1.0.0.jar

@@ -6,7 +6,7 @@
 
   <groupId>com.nasertamimi.earthquake.api</groupId>
   <artifactId>earthquakeAPI</artifactId>
-  <version>y</version>
+  <version>1.0.0</version>
 
   <name>earthquakeAPI</name>
   <!-- FIXME change it to the project's website -->
