@@ -1,13 +1,19 @@
 package com.nasertamimi.earthquake.api;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.net.HttpURLConnection;
+
+public class App {
+    public static void main( String[] args ) {
+        try {
+            GeoConn geoConn = new GeoConn();
+            Request request = new Request();
+
+            String response = request.perform(geoConn.usgs());
+
+            System.out.println(response);
+
+        } catch (Exception e) {
+            System.out.println("An error occured: " + e.getMessage());
+        }
     }
 }
