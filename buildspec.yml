@@ -1,4 +1,4 @@
-version: 0.2
+version: 0.1
 
 phases:
   build:
@@ -6,5 +6,6 @@ phases:
       - echo Build started on `date`
       - mvn install
 artifacts:
+  type: none
   files:
     - target/earthquakeAPI-1.0.0-SNAPSHOT.jar
