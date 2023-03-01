@@ -7,4 +7,4 @@ phases:
       - mvn install
 artifacts:
   files:
-    - target/earthquakeAPI-1.0.0.jar
+    - target/earthquakeAPI-1.0.0-SNAPSHOT.jar
