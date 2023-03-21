@@ -17,7 +17,7 @@ public class USGSDownloader extends Downloader{
 
             String response = request.perform(geoConn.usgs(startDate, endDate));
 
-            System.out.println(response);
+            //System.out.println(response);
 
             Path path = Paths.get(String.format("/tmp/earthquakeApi/output_%s.json", LocalDate.now()));
             Files.writeString(path, response,  StandardCharsets.UTF_8);
