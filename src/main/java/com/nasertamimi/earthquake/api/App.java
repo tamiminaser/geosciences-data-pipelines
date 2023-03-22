@@ -3,11 +3,10 @@ package com.nasertamimi.earthquake.api;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 public class App {
-    private static Logger logger = LoggerFactory.getLogger(App.class);
+    private static Logger logger = LogManager.getLogger(App.class);
 
     public static void main( String[] args ) {
         try {
@@ -18,7 +17,7 @@ public class App {
             USGSDownloader downloader = new USGSDownloader();
             Path downloaded_path = downloader.download(startDate, endDate);
 
-            logger.info(String.valueOf(downloaded_path));
+            logger.info("Download Path is: "+String.valueOf(downloaded_path));
 
         } catch (Exception e) {
             System.out.println("An error occured: " + e.getMessage());
