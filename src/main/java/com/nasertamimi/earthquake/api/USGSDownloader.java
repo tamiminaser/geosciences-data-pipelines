@@ -1,5 +1,8 @@
 package com.nasertamimi.earthquake.api;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +13,9 @@ public class USGSDownloader extends Downloader{
     public USGSDownloader(){
         super();
     }
+
+    private static Logger logger = LogManager.getLogger(USGSDownloader.class);
+
     public Path download(String startDate, String endDate) throws Exception{
         try {
             GeoConn geoConn = new GeoConn();
@@ -17,16 +23,15 @@ public class USGSDownloader extends Downloader{
 
             String response = request.perform(geoConn.usgs(startDate, endDate));
 
-            //System.out.println(response);
+            logger.info(response);
 
-            Path path = Paths.get(String.format("/tmp/earthquakeApi/output_%s.json", LocalDate.now()));
+            Path path = Paths.get(String.format("/tmp/output_%s.json", LocalDate.now()));
             Files.writeString(path, response,  StandardCharsets.UTF_8);
-
             return path;
         } catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            logger.error("An error occured: " + e.getMessage());
+            return null;
         }
-        return null;
     }
 }

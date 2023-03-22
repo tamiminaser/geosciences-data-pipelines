@@ -20,8 +20,7 @@ public class App {
             logger.info("Download Path is: "+String.valueOf(downloaded_path));
 
         } catch (Exception e) {
-            System.out.println("An error occured: " + e.getMessage());
+            logger.error("An error occured: " + e.getMessage());
         }
-        logger.info("Hello WORLD!");
     }
 }
