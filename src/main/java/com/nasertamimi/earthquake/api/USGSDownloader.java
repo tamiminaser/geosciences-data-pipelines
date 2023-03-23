@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 
 public class USGSDownloader extends Downloader{
     public USGSDownloader(){
@@ -23,10 +22,17 @@ public class USGSDownloader extends Downloader{
 
             String response = request.perform(geoConn.usgs(startDate, endDate));
 
-            logger.info(response);
+            //logger.info(response);
 
-            Path path = Paths.get(String.format("/tmp/output_%s.json", LocalDate.now()));
-            Files.writeString(path, response,  StandardCharsets.UTF_8);
+            long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
+
+            Path path = Paths.get(
+                    String.format("/tmp/earthquakeAPI/source=USGS/start_date=%s/end_date=%s/run_time=%d",
+                            startDate, endDate, runTime));
+
+            Files.createDirectories(path);
+            Files.writeString(path.resolve(Paths.get("output.json")), response,  StandardCharsets.UTF_8);
+
             return path;
         } catch (Exception e)
         {
