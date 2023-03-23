@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake.api;
+package com.nasertamimi.earthquake;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

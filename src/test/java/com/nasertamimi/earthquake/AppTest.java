@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake.api;
+package com.nasertamimi.earthquake;
 
 import static org.junit.Assert.assertTrue;
 
