@@ -34,5 +34,4 @@ usgs_download_daily_task = BashOperator(
     bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar s3://naser-tamimi-test1/jars/earthquakeAPI-1.0.0-SNAPSHOT-shaded.jar"
 )
 
-
-start_task >> usgs_download_daily_task >> end_task+
+start_task >> usgs_download_daily_task >> end_task
