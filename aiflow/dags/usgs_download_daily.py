@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.operators import BashOperator
+from airflow.operators.bash import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.macros import  ds_add
 from datetime import datetime
@@ -13,7 +13,7 @@ args = {
 }
 
 dag = DAG(
-    dag_name='earthquakeAPI',
+    'earthquakeAPI',
     schedule_interval=None,  # manually triggered
     default_args=args)
 
