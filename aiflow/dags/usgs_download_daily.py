@@ -17,9 +17,10 @@ dag = DAG(
     schedule_interval=None,  # manually triggered
     default_args=args)
 
-EXEC_DATE = '{{ ds }}'
-start_date = ds_add(EXEC_DATE, -1)
-end_date = EXEC_DATE
+EXEC_DATE = '{{ execution_date.strftime("%Y-%m-%d") }}' 
+PREV_DATE = '{{ (execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%d") }}'
+start_date = PREV_DATE
+end_date =  EXEC_DATE
 
 ###################################
 ##            TASKS              ##
@@ -31,7 +32,8 @@ end_task = DummyOperator(task_id='end', dag=dag)
 usgs_download_daily_task = BashOperator(
     task_id='usgs_download_daily_task',
     dag=dag,
-    bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar s3://naser-tamimi-test1/jars/earthquakeAPI-1.0.0-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.0-SNAPSHOT-shaded.jar"
 )
+
 
 start_task >> usgs_download_daily_task >> end_task
