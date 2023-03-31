@@ -35,5 +35,7 @@ usgs_download_daily_task = BashOperator(
     bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.0-SNAPSHOT-shaded.jar"
 )
 
+task_1 = DummyOperator(task_id='task-1', dag=dag)
+task_2 = DummyOperator(task_id='task-2', dag=dag)
 
-start_task >> usgs_download_daily_task >> end_task
+start_task >> usgs_download_daily_task >> [task_1, task_2] >> end_task
