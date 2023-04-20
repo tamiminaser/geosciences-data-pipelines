@@ -10,7 +10,8 @@ public class App {
 
     public static void main( String[] args ) {
         try {
-            LocalDate localDate = LocalDate.now();
+            LocalDate localDate;
+            localDate = LocalDate.now();
             String startDate = localDate.minusDays(1).toString();
             String endDate = localDate.toString();
 
