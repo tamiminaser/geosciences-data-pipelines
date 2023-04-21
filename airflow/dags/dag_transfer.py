@@ -18,5 +18,6 @@ transfer_dags_from_s3 = S3FileTransformOperator(
     task_id="transfer_dags_from_s3",
     source_s3_key=f"s3://{S3_BUCKET_DAG}/airflow/dags",
     dest_s3_key="/home/ubuntu/airflow/dags",
-    transform_script="/bin/cp"
+    transform_script="/bin/cp",
+    dag=dag
 )
