@@ -1,11 +1,9 @@
 from datetime import datetime
 from airflow import DAG
 from airflow.providers.amazon.aws.operators.s3 import S3FileTransformOperator
-import os
+from airflow.models import Variable
 
-# This fixed NEGSIG.SIGEV error
-os.environ['no_proxy'] = '*'
-S3_BUCKET_DAG = os.environ['S3_BUCKET_DAG']
+S3_BUCKET_DAG = Variable.get['S3_BUCKET_DAG']
 
 dag = DAG(
         dag_id="dag_transfer",
