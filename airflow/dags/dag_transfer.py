@@ -9,8 +9,8 @@ S3_BUCKET_DAG = os.environ['S3_BUCKET_DAG']
 
 dag = DAG(
         dag_id="dag_transfer",
-        schedule=None,
-        start_date=datetime(2023, 1, 1),
+        schedule='0',
+        start_date=datetime(2023, 4, 21),
         catchup=False,
 )
 

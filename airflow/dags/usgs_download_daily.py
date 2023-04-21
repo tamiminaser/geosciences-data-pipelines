@@ -14,7 +14,7 @@ args = {
 
 dag = DAG(
     'earthquakeAPI',
-    schedule_interval='0 * * * *',
+    schedule_interval=None,
     default_args=args)
 
 EXEC_DATE = '{{ execution_date.strftime("%Y-%m-%d") }}' 
