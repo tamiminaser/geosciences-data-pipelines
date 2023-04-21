@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.providers.amazon.aws.operators.s3 import S3FileTransformOperator
 from airflow.models import Variable
 
-S3_BUCKET_DAG = Variable.get['S3_BUCKET_DAG']
+S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
 
 dag = DAG(
         dag_id="dag_transfer",
