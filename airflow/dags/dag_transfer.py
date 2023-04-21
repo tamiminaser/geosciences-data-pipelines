@@ -7,7 +7,7 @@ S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
 
 dag = DAG(
         dag_id="dag_transfer",
-        schedule='0',
+        schedule='* * * * *',
         start_date=datetime(2023, 4, 21),
         catchup=False,
 )
