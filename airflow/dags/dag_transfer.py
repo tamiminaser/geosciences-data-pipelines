@@ -1,7 +1,8 @@
 from datetime import datetime
 from airflow import DAG
-from airflow.providers.amazon.aws.operators.s3 import S3FileTransformOperator
 from airflow.models import Variable
+from airflow.operators.bash import BashOperator
+
 
 S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
 
@@ -12,10 +13,8 @@ dag = DAG(
         catchup=False,
 )
 
-transfer_dags_from_s3 = S3FileTransformOperator(
-    task_id="transfer_dags_from_s3",
-    source_s3_key=f"s3://{S3_BUCKET_DAG}/airflow/dags",
-    dest_s3_key="/home/ubuntu/airflow/dags",
-    transform_script="/bin/cp",
-    dag=dag
+transfer_dags_from_s3 = BashOperator(
+    task_id="run_after_loop",
+    bash_command="aws s3 sync s3://{S3_BUCKET_DAG}/airflow/dags /home/ubuntu/airflow/dags",
+    dag=dag,
 )
