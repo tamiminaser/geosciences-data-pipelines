@@ -13,7 +13,7 @@ args = {
 }
 
 dag = DAG(
-    'earthquakeAPI',
+    'earthquakeAPI-Backfill',
     schedule_interval=None,
     default_args=args)
 
