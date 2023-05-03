@@ -86,5 +86,6 @@
         </configuration>
       </plugin>
     </plugins>
+    <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
   </build>
 </project>
