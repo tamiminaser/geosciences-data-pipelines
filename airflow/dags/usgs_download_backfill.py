@@ -22,9 +22,7 @@ PREV_DATE = '{{dag_run.conf["end_date"]}}'
 start_date = PREV_DATE
 end_date =  EXEC_DATE
 
-###################################
-##            TASKS              ##
-###################################
+# Tasks
 
 start_task = DummyOperator(task_id='start', dag=dag)
 end_task = DummyOperator(task_id='end', dag=dag)
@@ -34,5 +32,7 @@ usgs_download_daily_task = BashOperator(
     dag=dag,
     bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
+
+# Dependencies
 
 start_task >> usgs_download_daily_task >> end_task
