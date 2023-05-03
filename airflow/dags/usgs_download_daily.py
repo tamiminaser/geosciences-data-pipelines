@@ -19,7 +19,7 @@ args = {
 
 dag = DAG(
     'earthquakeAPI-Daily',
-    schedule_interval=None,
+    schedule_interval="0 0 * * *",
     default_args=args)
 
 # Tasks
