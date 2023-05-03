@@ -6,10 +6,8 @@ from datetime import datetime
 
 S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
 
-EXEC_DATE = '{{dag_run.conf["start_date"]}}'
-PREV_DATE = '{{dag_run.conf["end_date"]}}'
-start_date = PREV_DATE
-end_date = EXEC_DATE
+start_date = '{{dag_run.conf["start_date"]}}'
+end_date = '{{dag_run.conf["end_date"]}}'
 
 args = {
     'owner': 'airflow_dummy_owner',
