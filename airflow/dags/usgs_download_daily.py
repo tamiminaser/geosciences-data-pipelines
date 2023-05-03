@@ -30,5 +30,11 @@ usgs_download_daily_task = BashOperator(
     bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
+transfer_data_to_s3 = BashOperator(
+    task_id="transfer_data_to_s3",
+    bash_command=f"aws s3 sync /tmp/earthquakeAPI/source=USGS s3://{S3_BUCKET_DAG}/data/earthquakeAPI/source=USGS --exact-timestamps",
+    dag=dag,
+)
+
 # Dependencies
-start_task >> usgs_download_daily_task >> end_task
+start_task >> usgs_download_daily_task >> transfer_data_to_s3 >> end_task
