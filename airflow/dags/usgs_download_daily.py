@@ -27,7 +27,7 @@ end_task = DummyOperator(task_id='end', dag=dag)
 usgs_download_daily_task = BashOperator(
     task_id='usgs_download_daily_task',
     dag=dag,
-    bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.0-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
 # Dependencies
