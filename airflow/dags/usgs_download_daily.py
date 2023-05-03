@@ -1,7 +1,15 @@
 from airflow import DAG
+from airflow.models import Variable
 from airflow.operators.bash import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime
+
+S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
+EXEC_DATE = '{{ execution_date.strftime("%Y-%m-%d") }}'
+PREV_DATE = '{{ (execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%d") }}'
+start_date = PREV_DATE
+end_date = EXEC_DATE
+
 
 args = {
     'owner': 'airflow_dummy_owner',
@@ -13,11 +21,6 @@ dag = DAG(
     'earthquakeAPI-Daily',
     schedule_interval=None,
     default_args=args)
-
-EXEC_DATE = '{{ execution_date.strftime("%Y-%m-%d") }}' 
-PREV_DATE = '{{ (execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%d") }}'
-start_date = PREV_DATE
-end_date =  EXEC_DATE
 
 # Tasks
 
