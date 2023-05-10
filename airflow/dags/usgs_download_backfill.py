@@ -11,7 +11,7 @@ end_date = '{{dag_run.conf["end_date"]}}'
 
 args = {
     'owner': 'airflow_dummy_owner',
-    'start_date': None,
+    'start_date': datetime(2023, 1, 1),
     'provide_context': True
 }
 
