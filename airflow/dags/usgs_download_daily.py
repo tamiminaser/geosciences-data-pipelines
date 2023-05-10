@@ -12,13 +12,13 @@ end_date = EXEC_DATE
 
 
 args = {
-    'owner': 'airflow_dummy_owner',
-    'start_date': datetime(2019, 4, 24),
+    'owner': 'airflow_owner',
+    'start_date': datetime(2023, 1, 1),
     'provide_context': True
 }
 
 dag = DAG(
-    'earthquakeAPI-Daily',
+    'earthquake-download-daily',
     schedule_interval="0 0 * * *",
     default_args=args)
 
