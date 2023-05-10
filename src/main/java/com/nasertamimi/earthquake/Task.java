@@ -23,8 +23,8 @@ public class Task {
             logger.info("Download Path is: "+String.valueOf(downloadedPath));
 
             logger.info("Writing TSV file started.");
-            USGSTsvFileWriter TSVfileWriter = new USGSTsvFileWriter(downloadedPath);
-            TSVfileWriter.write();
+            USGSTsvFileWriter TSVFileWriter = new USGSTsvFileWriter(downloadedPath);
+            TSVFileWriter.write();
 
         } catch (Exception e) {
             logger.error("An error occured: " + e.getMessage());

@@ -22,8 +22,8 @@ public class Example {
             USGSDownloader downloader = new USGSDownloader();
             Path downloadedPath = downloader.download(startDate, endDate);
 
-            USGSTsvFileWriter TSVfileWriter = new USGSTsvFileWriter(downloadedPath);
-            TSVfileWriter.write();
+            USGSTsvFileWriter TSVFileWriter = new USGSTsvFileWriter(downloadedPath);
+            TSVFileWriter.write();
 
         } catch (Exception e) {
             logger.error("An error occured: " + e.getMessage());
