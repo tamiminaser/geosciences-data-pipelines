@@ -17,10 +17,10 @@ public class Task {
             logger.info(String.format("End Date is %s", endDate));
 
             USGSDownloader downloader = new USGSDownloader();
-            Path downloaded_path = downloader.download(startDate, endDate);
+            Path downloadedPath = downloader.download(startDate, endDate);
 
             logger.info("Download completed.");
-            logger.info("Download Path is: "+String.valueOf(downloaded_path));
+            logger.info("Download Path is: "+String.valueOf(downloadedPath));
 
             logger.info("Writing TSV file started.");
             USGSTsvFileWriter TSVfileWriter = new USGSTsvFileWriter(downloadedPath);
