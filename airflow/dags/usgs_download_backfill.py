@@ -11,12 +11,12 @@ end_date = '{{dag_run.conf["end_date"]}}'
 
 args = {
     'owner': 'airflow_dummy_owner',
-    'start_date': datetime(2019, 4, 24),
+    'start_date': None,
     'provide_context': True
 }
 
 dag = DAG(
-    'earthquakeAPI-Backfill',
+    'earthquake-download-backfill',
     schedule_interval=None,
     default_args=args)
 
