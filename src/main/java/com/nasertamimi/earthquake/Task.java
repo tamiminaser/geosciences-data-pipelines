@@ -19,7 +19,12 @@ public class Task {
             USGSDownloader downloader = new USGSDownloader();
             Path downloaded_path = downloader.download(startDate, endDate);
 
+            logger.info("Download completed.");
             logger.info("Download Path is: "+String.valueOf(downloaded_path));
+
+            logger.info("Writing TSV file started.");
+            USGSTsvFileWriter TSVfileWriter = new USGSTsvFileWriter(downloadedPath);
+            TSVfileWriter.write();
 
         } catch (Exception e) {
             logger.error("An error occured: " + e.getMessage());
