@@ -10,15 +10,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class USGSTsvFileWriter {
-    private static Logger logger = LogManager.getLogger(USGSTsvFileWriter.class);
+public class USGSTsvDataWriter extends DataWriter {
+    private static Logger logger = LogManager.getLogger(USGSTsvDataWriter.class);
     private Path tsvFilePath;
     private String tsvHeader = "magVal\tplaceVal\ttimeVal\tupdatedVal\ttzVal\turlVal\tdetailVal\tfeltVal\tcdiVal\tmmiVal\t"+
             "alertVal\tstatusVal\ttsunamiVal\tsigVal\tnetVal\tcodeVal\tidsVal\tsourcesVal\ttypesVal\tnstVal\t"+
             "dminVal\trmsVal\tgapVal\tmagTypeVal\ttypeVal\tcoordVal0\tcoordVal1\tcoordVal2\n";
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode rootNode;
-    public USGSTsvFileWriter(Path downloadedPath) throws Exception{
+    public USGSTsvDataWriter(Path downloadedPath) throws Exception{
         logger.info("Download Path is: "+ downloadedPath);
 
         Path jsonFilePath = downloadedPath.resolve(Paths.get("output.json"));
