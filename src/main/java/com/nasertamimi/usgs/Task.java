@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake;
+package com.nasertamimi.usgs;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,7 @@ public class Task {
             LocalDate startDate = LocalDate.parse(System.getProperty("start_date"));
             LocalDate endDate = LocalDate.parse(System.getProperty("end_date"));
 
-            USGSDownloader downloader = new USGSDownloader();
+            USGSEarthquakeDownloader downloader = new USGSEarthquakeDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);

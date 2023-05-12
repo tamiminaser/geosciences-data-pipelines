@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake;
+package com.nasertamimi.usgs;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +17,7 @@ public class Example {
             LocalDate startDate = LocalDate.parse("2023-04-20");
             LocalDate endDate = LocalDate.parse("2023-04-20");
 
-            USGSDownloader downloader = new USGSDownloader();
+            USGSEarthquakeDownloader downloader = new USGSEarthquakeDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);

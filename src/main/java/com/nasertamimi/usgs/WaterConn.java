@@ -1,16 +1,13 @@
-package com.nasertamimi.earthquake;
+package com.nasertamimi.usgs;
 
-import java.net.URL;
 import java.net.HttpURLConnection;
-import java.time.LocalDate;
-import java.util.Date;
+import java.net.URL;
 
-public class GeoConn {
-    public GeoConn(){
+public class WaterConn {
+    public WaterConn(){
     }
     public HttpURLConnection usgs(String startDate, String endDate) throws Exception{
-
-        String endpoint = String.format("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=%s&endtime=%s", startDate, endDate);
+        String endpoint = String.format("https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=tx&startDT=%s&endDT=%s&parameterCd=00060,00065&siteStatus=all", startDate, endDate);
 
         // creating a connection
         URL url = new URL(endpoint);

@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake;
+package com.nasertamimi.usgs;
 
 import java.nio.file.Path;
 

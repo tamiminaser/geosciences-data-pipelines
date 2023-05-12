@@ -1,4 +1,4 @@
-package com.nasertamimi.earthquake;
+package com.nasertamimi.usgs;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,26 +8,26 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class USGSDownloader extends Downloader{
-    public USGSDownloader(){
+public class USGSWaterDownloader extends Downloader{
+    public USGSWaterDownloader(){
         super();
     }
 
-    private static Logger logger = LogManager.getLogger(USGSDownloader.class);
+    private static Logger logger = LogManager.getLogger(USGSWaterDownloader.class);
 
     public Path download(String startDate, String endDate) throws Exception{
         try {
-            GeoConn geoConn = new GeoConn();
+            WaterConn waterConn = new WaterConn();
             Request request = new Request();
 
-            String response = request.perform(geoConn.usgs(startDate, endDate));
+            String response = request.perform(waterConn.usgs(startDate, endDate));
 
             //logger.info(response);
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
             Path path = Paths.get(
-                    String.format("/tmp/earthquakeAPI/source=USGS/start_date=%s/",
+                    String.format("/tmp/USGS/waterAPI/source=USGS/start_date=%s/",
                             startDate, endDate, runTime));
 
             Files.createDirectories(path);
