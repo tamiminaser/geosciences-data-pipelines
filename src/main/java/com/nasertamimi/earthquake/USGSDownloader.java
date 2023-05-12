@@ -37,7 +37,7 @@ public class USGSDownloader extends Downloader{
             return path;
         } catch (Exception e)
         {
-            logger.error("An error occured: " + e.getMessage());
+            logger.error("An error occurred: " + e.getMessage());
             return null;
         }
     }

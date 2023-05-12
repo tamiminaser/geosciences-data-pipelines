@@ -40,7 +40,7 @@ public class Example {
             }
 
         } catch (Exception e) {
-            logger.error("An error occured: " + e.getMessage());
+            logger.error("An error occurred: " + e.getMessage());
         }
 
 
