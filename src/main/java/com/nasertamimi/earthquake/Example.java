@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-
+import java.time.format.DateTimeFormatter;
 
 
 public class Example {
@@ -14,16 +14,30 @@ public class Example {
 
     public static void main( String[] args ) {
         try {
-            LocalDate localDate;
-            localDate = LocalDate.now();
-            String startDate = localDate.minusDays(1).toString();
-            String endDate = localDate.toString();
+            LocalDate startDate = LocalDate.parse("2023-04-20");
+            LocalDate endDate = LocalDate.parse("2023-04-20");
 
             USGSDownloader downloader = new USGSDownloader();
-            Path downloadedPath = downloader.download(startDate, endDate);
 
-            USGSTsvDataWriter tsvDataWriter = new USGSTsvDataWriter(downloadedPath);
-            tsvDataWriter.write();
+            LocalDate runDate = startDate;
+            LocalDate nextDate = runDate.plusDays(1);
+
+            while (runDate.isBefore(endDate) || runDate.isEqual(endDate)) {
+                String runDateStr = runDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String nextDateStr = nextDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+
+                logger.info(String.format("Run Date is %s", runDateStr));
+                Path downloadedPath = downloader.download(runDateStr, nextDateStr);
+                logger.info(String.format("Download completed for %s.", runDateStr));
+                logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
+
+                logger.info(String.format("Writing TSV file started for %s", runDateStr));
+                USGSTsvDataWriter tsvDataWriter = new USGSTsvDataWriter(downloadedPath);
+                tsvDataWriter.write();
+
+                runDate = nextDate;
+                nextDate = nextDate.plusDays(1);
+            }
 
         } catch (Exception e) {
             logger.error("An error occured: " + e.getMessage());

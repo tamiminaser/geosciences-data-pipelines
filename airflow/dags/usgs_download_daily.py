@@ -5,10 +5,8 @@ from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime
 
 S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
-EXEC_DATE = '{{ execution_date.strftime("%Y-%m-%d") }}'
 PREV_DATE = '{{ (execution_date - macros.timedelta(days=1)).strftime("%Y-%m-%d") }}'
-start_date = PREV_DATE
-end_date = EXEC_DATE
+run_date = PREV_DATE  #Remember: we alway get data for the previous day.
 
 
 args = {
@@ -30,7 +28,7 @@ end_task = DummyOperator(task_id='end', dag=dag)
 usgs_download_daily_task = BashOperator(
     task_id='usgs_download_daily_task',
     dag=dag,
-    bash_command=f"java -Dstart_date={start_date} -Dend_date={end_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Dstart_date={run_date} -Dend_date={run_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
 transfer_data_to_s3 = BashOperator(

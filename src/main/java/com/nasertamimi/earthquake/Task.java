@@ -4,27 +4,38 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
     private static Logger logger = LogManager.getLogger(Task.class);
 
     public static void main( String[] args ) {
         try {
-            String startDate = System.getProperty("start_date");
-            String endDate = System.getProperty("end_date");
-
-            logger.info(String.format("Start Date is %s", startDate));
-            logger.info(String.format("End Date is %s", endDate));
+            LocalDate startDate = LocalDate.parse(System.getProperty("start_date"));
+            LocalDate endDate = LocalDate.parse(System.getProperty("end_date"));
 
             USGSDownloader downloader = new USGSDownloader();
-            Path downloadedPath = downloader.download(startDate, endDate);
 
-            logger.info("Download completed.");
-            logger.info("Download Path is: "+String.valueOf(downloadedPath));
+            LocalDate runDate = startDate;
+            LocalDate nextDate = runDate.plusDays(1);
 
-            logger.info("Writing TSV file started.");
-            USGSTsvDataWriter tsvDataWriter = new USGSTsvDataWriter(downloadedPath);
-            tsvDataWriter.write();
+            while (runDate.isBefore(endDate) || runDate.isEqual(endDate)) {
+                String runDateStr = runDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String nextDateStr = nextDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+
+                logger.info(String.format("Run Date is %s", runDateStr));
+                Path downloadedPath = downloader.download(runDateStr, nextDateStr);
+                logger.info(String.format("Download completed for %s.", runDateStr));
+                logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
+
+                logger.info(String.format("Writing TSV file started for %s", runDateStr));
+                USGSTsvDataWriter tsvDataWriter = new USGSTsvDataWriter(downloadedPath);
+                tsvDataWriter.write();
+
+                runDate = nextDate;
+                nextDate = nextDate.plusDays(1);
+            }
 
         } catch (Exception e) {
             logger.error("An error occured: " + e.getMessage());

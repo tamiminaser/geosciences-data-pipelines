@@ -27,7 +27,7 @@ public class USGSDownloader extends Downloader{
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
             Path path = Paths.get(
-                    String.format("/tmp/earthquakeAPI/source=USGS/start_date=%s/end_date=%s/run_time=%d/",
+                    String.format("/tmp/earthquakeAPI/source=USGS/start_date=%s/",
                             startDate, endDate, runTime));
 
             Files.createDirectories(path);
