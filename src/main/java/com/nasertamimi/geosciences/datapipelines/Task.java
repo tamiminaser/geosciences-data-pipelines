@@ -37,8 +37,8 @@ public class Task {
                 logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
 
                 logger.info(String.format("Writing TSV file started for %s", runDateStr));
-                USGSEarthquakeDataWriter tsvDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
-                tsvDataWriter.write();
+                USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
+                earthquakeDataWriter.write("tsv");
 
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);

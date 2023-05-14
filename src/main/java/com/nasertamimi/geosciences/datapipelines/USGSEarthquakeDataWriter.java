@@ -33,18 +33,21 @@ public class USGSEarthquakeDataWriter extends DataWriter {
     }
     public void write(String fileType) throws Exception{
 
-        Path tsvFilePath = null;
+        Path filePath = null;
         String dataToWrite = null;
 
         if (fileType.equals("tsv")) {
             dataToWrite = usgsEarthquakeEvent.toTsv();
-            tsvFilePath = downloadedPath.resolve(Paths.get("output.tsv"));;
+            filePath = downloadedPath.resolve(Paths.get("output.tsv"));
+        } else if (fileType.equals("csv")) {
+            dataToWrite = usgsEarthquakeEvent.toCsv();
+            filePath = downloadedPath.resolve(Paths.get("output.csv"));
         }
 
-        logger.info("Writing to the TSV file at: "+ tsvFilePath);
+        logger.info("Writing to the file at: "+ filePath);
 
         assert dataToWrite != null;
-        FileWriter writer = new FileWriter(tsvFilePath.toString());
+        FileWriter writer = new FileWriter(filePath.toString());
         writer.write(dataToWrite);
         writer.close();
     }
