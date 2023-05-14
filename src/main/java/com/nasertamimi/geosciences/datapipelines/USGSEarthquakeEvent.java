@@ -1,42 +1,38 @@
 package com.nasertamimi.geosciences.datapipelines;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class USGSTsvDataWriter extends DataWriter {
-    private static Logger logger = LogManager.getLogger(USGSTsvDataWriter.class);
-    private Path tsvFilePath;
-    private String tsvHeader = "magVal\tplaceVal\ttimeVal\tupdatedVal\ttzVal\turlVal\tdetailVal\tfeltVal\tcdiVal\tmmiVal\t"+
-            "alertVal\tstatusVal\ttsunamiVal\tsigVal\tnetVal\tcodeVal\tidsVal\tsourcesVal\ttypesVal\tnstVal\t"+
-            "dminVal\trmsVal\tgapVal\tmagTypeVal\ttypeVal\tcoordVal0\tcoordVal1\tcoordVal2\n";
-    private ObjectMapper mapper = new ObjectMapper();
+public class USGSEarthquakeEvent {
+
     private JsonNode rootNode;
-    public USGSTsvDataWriter(Path downloadedPath) throws Exception{
-        logger.info("Download Path is: "+ downloadedPath);
-
-        Path jsonFilePath = downloadedPath.resolve(Paths.get("output.json"));
-        String jsonString = Files.readAllLines(jsonFilePath).get(0);
-        rootNode = mapper.readTree(jsonString);
-
-        tsvFilePath = downloadedPath.resolve(Paths.get("output.tsv"));
+    private String[] fields = {"mag", "place", "time", "updatedVal", "tz", "url", "detail", "felt", "cdiVal",
+            "mmi", "alert", "status", "tsunami", "sig", "net", "code", "ids", "sources", "types", "nst",
+            "dmin", "rms", "gap", "magType", "type", "coord0", "coord1", "coord2"};
+    public USGSEarthquakeEvent(JsonNode rootNode){
+        this.rootNode = rootNode;
     }
 
-    public void write() throws Exception{
+    private String headerBuilder(String sep){
+        ArrayList<String> fields_ = new ArrayList<String>(Arrays.asList(fields));
+        return String.join(sep, fields_)+"\n";
+    }
 
-        logger.info("Writing to the TSV file at: "+ tsvFilePath);
+    public String toTsv() {
+        return output("\t");
+    }
+
+    public String toCsv() {
+        return output(",");
+    }
+
+    private String output(String sep){
+        String header = headerBuilder(sep);
+        String dataToWrite = header;
 
         JsonNode featuresNode = rootNode.get("features");
-
-        FileWriter writer = new FileWriter(tsvFilePath.toString());
-        writer.append(tsvHeader);
-
         for (JsonNode featureNode : featuresNode) {
             JsonNode propertiesNode = featureNode.get("properties");
             JsonNode geometryNode = featureNode.get("geometry");
@@ -70,13 +66,15 @@ public class USGSTsvDataWriter extends DataWriter {
             double coordVal1 = geometryNode.get("coordinates").get(1).asDouble();
             double coordVal2 = geometryNode.get("coordinates").get(2).asDouble();
 
-            String row = magVal + "\t" + placeVal + "\t" + timeVal + "\t" + updatedVal + "\t" + tzVal + "\t" + urlVal + "\t";
-            row += detailVal + "\t" + feltVal + "\t" + cdiVal + "\t" + mmiVal + "\t" + alertVal + "\t" + statusVal + "\t";
-            row += tsunamiVal + "\t" + sigVal + "\t" + netVal + "\t" + codeVal + "\t" + idsVal + "\t" + sourcesVal + "\t";
-            row += typesVal + "\t" + nstVal + "\t" + dminVal + "\t" + rmsVal + "\t" + gapVal + "\t" + magTypeVal + "\t";
-            row += typeVal + "\t" + coordVal0 + "\t" + coordVal1 + "\t" + coordVal2 + "\n";
+            String dataRow = magVal + sep + placeVal + sep + timeVal + sep + updatedVal + sep +
+                    tzVal + sep + urlVal + sep + detailVal + sep + feltVal + sep + cdiVal + sep +
+                    mmiVal + sep + alertVal + sep + statusVal + sep + tsunamiVal + sep + sigVal + sep +
+                    netVal + sep + codeVal + sep + idsVal + sep + sourcesVal + sep + typesVal + sep +
+                    nstVal + sep + dminVal + sep + rmsVal + sep + gapVal + sep + magTypeVal + sep +
+                    typeVal + sep + coordVal0 + sep + coordVal1 + sep + coordVal2 + "\n";
 
-            writer.append(row);
+            dataToWrite += dataRow;
         }
+        return dataToWrite;
     }
 }
