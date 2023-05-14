@@ -3,6 +3,7 @@ package com.nasertamimi.geosciences.datapipelines;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,10 +15,6 @@ public class USGSWaterDownloader extends Downloader{
     }
 
     private static Logger logger = LogManager.getLogger(USGSWaterDownloader.class);
-
-    @Value("${path.download}")
-    private String basePathDownload;
-
 
     public Path download(String startDate, String endDate) throws Exception{
         try {
