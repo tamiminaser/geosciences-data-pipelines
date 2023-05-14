@@ -1,4 +1,4 @@
-package com.nasertamimi.usgs;
+package com.nasertamimi.geosciences.datapipelines;
 
 import java.nio.file.Path;
 

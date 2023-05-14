@@ -1,4 +1,4 @@
-package com.nasertamimi.usgs;
+package com.nasertamimi.geosciences.datapipelines;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

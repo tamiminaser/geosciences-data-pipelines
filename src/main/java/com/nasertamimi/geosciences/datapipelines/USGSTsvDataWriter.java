@@ -1,4 +1,4 @@
-package com.nasertamimi.usgs;
+package com.nasertamimi.geosciences.datapipelines;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

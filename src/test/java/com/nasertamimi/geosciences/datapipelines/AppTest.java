@@ -1,4 +1,4 @@
-package com.nasertamimi.usgs;
+package com.nasertamimi.geosciences.datapipelines;
 
 import static org.junit.Assert.assertTrue;
 
