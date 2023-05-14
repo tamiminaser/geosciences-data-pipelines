@@ -14,8 +14,15 @@ public class Task {
         try {
             LocalDate startDate = LocalDate.parse(System.getProperty("start_date"));
             LocalDate endDate = LocalDate.parse(System.getProperty("end_date"));
+            String downloadType = System.getProperty("download_type");
 
-            USGSEarthquakeDownloader downloader = new USGSEarthquakeDownloader();
+            Downloader downloader = null;
+
+            if (downloadType == "earthquake") {
+                downloader = new USGSEarthquakeDownloader();
+            } else if (downloadType == "water") {
+                downloader = new USGSWaterDownloader();
+            }
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);

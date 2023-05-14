@@ -16,9 +16,15 @@ public class Example {
         try {
             LocalDate startDate = LocalDate.parse("2023-04-20");
             LocalDate endDate = LocalDate.parse("2023-04-20");
+            String downloadType = "water";
 
-            USGSEarthquakeDownloader downloader = new USGSEarthquakeDownloader();
+            Downloader downloader = null;
 
+            if (downloadType == "earthquake") {
+                downloader = new USGSEarthquakeDownloader();
+            } else if (downloadType == "water") {
+                downloader = new USGSWaterDownloader();
+            }
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
 

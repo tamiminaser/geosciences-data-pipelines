@@ -77,7 +77,6 @@ public class USGSTsvDataWriter extends DataWriter {
             row += typeVal + "\t" + coordVal0 + "\t" + coordVal1 + "\t" + coordVal2 + "\n";
 
             writer.append(row);
-
         }
     }
 }
