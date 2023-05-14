@@ -15,6 +15,10 @@ public class USGSWaterDownloader extends Downloader{
 
     private static Logger logger = LogManager.getLogger(USGSWaterDownloader.class);
 
+    @Value("${path.download}")
+    private String basePathDownload;
+
+
     public Path download(String startDate, String endDate) throws Exception{
         try {
             WaterConn waterConn = new WaterConn();

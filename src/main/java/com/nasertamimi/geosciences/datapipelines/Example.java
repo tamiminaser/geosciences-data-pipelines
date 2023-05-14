@@ -16,7 +16,7 @@ public class Example {
         try {
             LocalDate startDate = LocalDate.parse("2023-04-20");
             LocalDate endDate = LocalDate.parse("2023-04-20");
-            String downloadType = "water";
+            String downloadType = "earthquake";
 
             Downloader downloader = null;
 

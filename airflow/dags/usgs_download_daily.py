@@ -28,7 +28,7 @@ end_task = DummyOperator(task_id='end', dag=dag)
 usgs_download_daily_task = BashOperator(
     task_id='usgs_download_daily_task',
     dag=dag,
-    bash_command=f"java -Dstart_date={run_date} -Dend_date={run_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
 transfer_data_to_s3 = BashOperator(
