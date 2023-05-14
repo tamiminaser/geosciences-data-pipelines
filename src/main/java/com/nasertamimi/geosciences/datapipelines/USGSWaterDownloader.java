@@ -3,7 +3,6 @@ package com.nasertamimi.geosciences.datapipelines;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,6 +16,7 @@ public class USGSWaterDownloader extends Downloader{
     private static Logger logger = LogManager.getLogger(USGSWaterDownloader.class);
 
     public Path download(String startDate, String endDate) throws Exception{
+
         try {
             WaterConn waterConn = new WaterConn();
             Request request = new Request();
@@ -27,9 +27,9 @@ public class USGSWaterDownloader extends Downloader{
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
-            Path path = Paths.get(
-                    String.format("/tmp/USGS/waterAPI/source=USGS/start_date=%s/",
-                            startDate, endDate, runTime));
+            String baseDownloadPath = props.getProperty("downloadBasePath");
+
+            Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate, endDate, runTime));
 
             Files.createDirectories(path);
             Path filepath = path.resolve(Paths.get("output.json"));

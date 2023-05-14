@@ -26,9 +26,9 @@ public class USGSEarthquakeDownloader extends Downloader{
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
-            Path path = Paths.get(
-                    String.format("/tmp/USGS/earthquakeAPI/source=USGS/start_date=%s/",
-                            startDate, endDate, runTime));
+            String baseDownloadPath = props.getProperty("downloadBasePath");
+
+            Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate, endDate, runTime));
 
             Files.createDirectories(path);
             Path filepath = path.resolve(Paths.get("output.json"));
