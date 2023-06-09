@@ -8,26 +8,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class USGSWaterDownloader extends Downloader{
-    public USGSWaterDownloader(){
+public class FIRMSFireDownloader extends Downloader{
+    public FIRMSFireDownloader(){
         super();
     }
 
-    private static Logger logger = LogManager.getLogger(USGSWaterDownloader.class);
+    private static Logger logger = LogManager.getLogger(FIRMSFireDownloader.class);
 
     public Path download(String startDate, String endDate) throws Exception{
-
         try {
-            WaterConn waterConn = new WaterConn();
+            FirmsConn fireConn = new FirmsConn();
             Request request = new Request();
 
-            String response = request.perform(waterConn.create(startDate, endDate));
+            String response = request.perform(fireConn.create(startDate));
 
-            //logger.info(response);
+            logger.info(response);
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
-            String baseDownloadPath = props.getProperty("waterDownloadBasePath");
+            String baseDownloadPath = props.getProperty("fireDownloadBasePath");
 
             Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate));
 

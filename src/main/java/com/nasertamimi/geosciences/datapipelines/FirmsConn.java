@@ -3,11 +3,14 @@ package com.nasertamimi.geosciences.datapipelines;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class WaterConn {
-    public WaterConn(){
+
+public class FirmsConn {
+    private final String mapKey = System.getenv("MAP_KEY");
+    public FirmsConn(){
     }
-    public HttpURLConnection create(String startDate, String endDate) throws Exception{
-        String endpoint = String.format("https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=tx&startDT=%s&endDT=%s&siteStatus=all", startDate, endDate);
+    public HttpURLConnection create(String startDate) throws Exception{
+
+        String endpoint = String.format("https://firms.modaps.eosdis.nasa.gov/api/area/csv/%s/VIIRS_SNPP_NRT/world/1/%s", mapKey, startDate);
 
         // creating a connection
         URL url = new URL(endpoint);

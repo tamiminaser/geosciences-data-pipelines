@@ -1,6 +1,9 @@
-package com.nasertamimi.geosciences.datapipelines;
+package examples;
 
 
+import com.nasertamimi.geosciences.datapipelines.Downloader;
+import com.nasertamimi.geosciences.datapipelines.USGSEarthquakeDataWriter;
+import com.nasertamimi.geosciences.datapipelines.USGSEarthquakeDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,22 +12,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class Example {
-    private static Logger logger = LogManager.getLogger(Example.class);
+public class USGSWaterExample {
+    private static Logger logger = LogManager.getLogger(USGSWaterExample.class);
 
     public static void main( String[] args ) {
         try {
             LocalDate startDate = LocalDate.parse("2023-04-20");
             LocalDate endDate = LocalDate.parse("2023-04-20");
-            String downloadType = "earthquake";
 
-            Downloader downloader = null;
+            Downloader downloader = new USGSEarthquakeDownloader();
 
-            if (downloadType == "earthquake") {
-                downloader = new USGSEarthquakeDownloader();
-            } else if (downloadType == "water") {
-                downloader = new USGSWaterDownloader();
-            }
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
 

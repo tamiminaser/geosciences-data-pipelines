@@ -20,15 +20,15 @@ public class USGSEarthquakeDownloader extends Downloader{
             GeoConn geoConn = new GeoConn();
             Request request = new Request();
 
-            String response = request.perform(geoConn.usgs(startDate, endDate));
+            String response = request.perform(geoConn.create(startDate, endDate));
 
             //logger.info(response);
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
-            String baseDownloadPath = props.getProperty("downloadBasePath");
+            String baseDownloadPath = props.getProperty("earthquakeDownloadBasePath");
 
-            Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate, endDate, runTime));
+            Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate));
 
             Files.createDirectories(path);
             Path filepath = path.resolve(Paths.get("output.json"));
