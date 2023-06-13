@@ -25,17 +25,32 @@ dag = DAG(
 start_task = DummyOperator(task_id='start', dag=dag)
 end_task = DummyOperator(task_id='end', dag=dag)
 
-usgs_download_daily_task = BashOperator(
-    task_id='usgs_download_daily_task',
+# USGS Earthquake
+usgs_earthquake_download_daily = BashOperator(
+    task_id='usgs_earthquake_download_daily',
     dag=dag,
-    bash_command=f"java -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Ddownload_type='earthquake' -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
-transfer_data_to_s3 = BashOperator(
+usgs_earthquake_transfer_data_to_s3 = BashOperator(
     task_id="transfer_data_to_s3",
-    bash_command=f"aws s3 sync /tmp/earthquakeAPI/source=USGS s3://{S3_BUCKET_DAG}/data/earthquakeAPI/source=USGS --exact-timestamps",
+    bash_command=f"aws s3 sync /tmp/EarthDataLake/earthquakeAPI/source=USGS s3://{S3_BUCKET_DAG}/data/EarthDataLake/earthquakeAPI/source=USGS --exact-timestamps",
+    dag=dag,
+)
+
+# FIRMS Fire
+firms_fire_download_daily = BashOperator(
+    task_id='firms_fire_download_daily',
+    dag=dag,
+    bash_command=f"java -Ddownload_type='fire' -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+)
+
+firms_fire_transfer_data_to_s3 = BashOperator(
+    task_id="transfer_data_to_s3",
+    bash_command=f"aws s3 sync EarthDataLake/fireAPI/source=FRIMS s3://{S3_BUCKET_DAG}/data/EarthDataLake/fireAPI/source=FRIMS --exact-timestamps",
     dag=dag,
 )
 
 # Dependencies
-start_task >> usgs_download_daily_task >> transfer_data_to_s3 >> end_task
+start_task >> usgs_earthquake_download_daily >> usgs_earthquake_transfer_data_to_s3 >> end_task
+start_task >> firms_fire_download_daily >> firms_fire_transfer_data_to_s3 >> end_task

@@ -13,7 +13,7 @@ public class Request {
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+            response.append(inputLine+"\n");
         }
         in.close();
         return response.toString();

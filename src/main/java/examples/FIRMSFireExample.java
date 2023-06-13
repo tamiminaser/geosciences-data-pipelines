@@ -33,15 +33,6 @@ public class FIRMSFireExample {
                 logger.info(String.format("Download completed for %s.", runDateStr));
                 logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
 
-            /*
-                USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
-
-                logger.info(String.format("Writing TSV file started for %s", runDateStr));
-                earthquakeDataWriter.write("tsv");
-
-                logger.info(String.format("Writing CSV file started for %s", runDateStr));
-                earthquakeDataWriter.write("csv");
-            */
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);
             }

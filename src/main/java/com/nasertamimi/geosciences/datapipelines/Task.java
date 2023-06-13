@@ -22,6 +22,8 @@ public class Task {
                 downloader = new USGSEarthquakeDownloader();
             } else if (downloadType == "water") {
                 downloader = new USGSWaterDownloader();
+            } else if (downloadType == "fire") {
+                downloader = new FIRMSFireDownloader();
             }
 
             LocalDate runDate = startDate;
@@ -36,9 +38,13 @@ public class Task {
                 logger.info(String.format("Download completed for %s.", runDateStr));
                 logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
 
-                logger.info(String.format("Writing TSV file started for %s", runDateStr));
-                USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
-                earthquakeDataWriter.write("tsv");
+                if (downloadType == "earthquake") {
+                    logger.info(String.format("Writing TSV file started for %s", runDateStr));
+                    USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
+                    earthquakeDataWriter.write("tsv");
+                } else if (downloadType == "fire") {
+                    logger.info(String.format("CSV file for %s is written to %s", runDateStr, downloadedPath));
+                }
 
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);

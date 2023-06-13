@@ -31,7 +31,7 @@ public class FIRMSFireDownloader extends Downloader{
             Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate));
 
             Files.createDirectories(path);
-            Path filepath = path.resolve(Paths.get("output.json"));
+            Path filepath = path.resolve(Paths.get("output.csv"));
             Files.writeString(filepath, response,  StandardCharsets.UTF_8);
 
             return path;
