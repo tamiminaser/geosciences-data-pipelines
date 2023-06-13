@@ -47,7 +47,7 @@ firms_fire_download_daily = BashOperator(
 
 firms_fire_transfer_data_to_s3 = BashOperator(
     task_id="transfer_data_to_s3",
-    bash_command=f"aws s3 sync EarthDataLake/fireAPI/source=FRIMS s3://{S3_BUCKET_DAG}/data/EarthDataLake/fireAPI/source=FRIMS --exact-timestamps",
+    bash_command=f"aws s3 sync /tmp/EarthDataLake/fireAPI/source=FRIMS s3://{S3_BUCKET_DAG}/data/EarthDataLake/fireAPI/source=FRIMS --exact-timestamps",
     dag=dag,
 )
 
