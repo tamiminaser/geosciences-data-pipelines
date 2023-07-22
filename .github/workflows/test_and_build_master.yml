@@ -1,11 +1,15 @@
 name: test_and_build_master
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
+    environment: prod-env
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -18,6 +22,7 @@ jobs:
 
   upload:
     runs-on: ubuntu-latest
+    environment: prod-env
     steps:
       - uses: shallwefootball/s3-upload-action@master
         with:
