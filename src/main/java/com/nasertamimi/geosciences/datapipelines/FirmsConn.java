@@ -5,8 +5,8 @@ import java.net.URL;
 
 
 public class FirmsConn {
-    private final String mapKey = System.getenv("MAP_KEY");
-
+    //private final String mapKey = System.getenv("MAP_KEY");
+    private final String mapKey = "58ac26c977e985760a8024087e6632e2";
     public FirmsConn(){
     }
     public HttpURLConnection create(String startDate) throws Exception{
