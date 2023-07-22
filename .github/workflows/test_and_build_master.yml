@@ -16,4 +16,4 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
       - name: Printing Dummy Secret (a test)
-        run: echos ${{ secrets.MY_DUMMY_TOKEN }}
+        run: echo ${{ secrets.MY_DUMMY_TOKEN }}
