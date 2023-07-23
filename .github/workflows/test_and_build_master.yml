@@ -29,4 +29,4 @@ jobs:
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: us-east-1
       - name: Deploy
-        run: aws s3 sync ./target/*.jar  s3://${{ secrets.AWS_BUCKET }}/jars
+        run: aws s3 sync ./target  s3://${{ secrets.AWS_BUCKET }}/jars --exclude "*" --include "*.jar"
