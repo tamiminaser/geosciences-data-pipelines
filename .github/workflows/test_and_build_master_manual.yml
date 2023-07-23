@@ -2,13 +2,13 @@ name: test_and_build_master
 
 on: workflow_dispatch
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
     environment: prod-env
     steps:
       - uses: actions/checkout@v3
