@@ -2,8 +2,11 @@ name: test_and_build_master
 
 on: workflow_dispatch
 
-jobs:
+permissions:
+  id-token: write
+  contents: read
 
+jobs:
   build:
     runs-on: ubuntu-latest
     environment: prod-env
@@ -23,4 +26,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Deploy
-        run: aws s3 sync ./target  s3://{{ secrets.AWS_BUCKET }}
+        run: aws s3 sync ./target  s3://${{ secrets.AWS_BUCKET }}
