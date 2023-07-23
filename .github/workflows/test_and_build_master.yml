@@ -12,6 +12,7 @@ jobs:
       packages: write
       contents: read
       id-token: write
+      deployments: read
     environment: prod-env
     steps:
       - uses: actions/checkout@v3
