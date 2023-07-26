@@ -6,11 +6,15 @@
 
   <groupId>com.nasertamimi.geosciences.datapipelines</groupId>
   <artifactId>GeosciencesDataPipelines</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-  <name>GeosciencesDataPipelines</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <scm>
+    <url>https://github.com/tamiminaser/geosciences-data-pipelines</url>
+    <connection>scm:git:https://github.com/tamiminaser/geosciences-data-pipeliness</connection>
+    <developerConnection>scm:git:https://github.com/tamiminaser/geosciences-data-pipelines</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
