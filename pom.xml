@@ -5,14 +5,14 @@
 
   <groupId>com.nasertamimi.geosciences.datapipelines</groupId>
   <artifactId>GeosciencesDataPipelines</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <scm>
     <url>https://github.com/tamiminaser/geosciences-data-pipelines</url>
     <connection>scm:git:https://github.com/tamiminaser/geosciences-data-pipeliness</connection>
     <developerConnection>scm:git:https://github.com/tamiminaser/geosciences-data-pipelines</developerConnection>
-    <tag>GeosciencesDataPipelines-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
