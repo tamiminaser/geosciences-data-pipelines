@@ -14,8 +14,8 @@ public class FIRMSFireExample {
 
     public static void main( String[] args ) {
         try {
-            LocalDate startDate = LocalDate.parse("2023-04-20");
-            LocalDate endDate = LocalDate.parse("2023-04-20");
+            LocalDate startDate = LocalDate.parse("2023-07-20");
+            LocalDate endDate = LocalDate.parse("2023-07-20");
 
             Downloader downloader = new FIRMSFireDownloader();
 
