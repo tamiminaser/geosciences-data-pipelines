@@ -16,4 +16,5 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           release-type: maven
-          package-name: geoscience-data-pipelines
+          package-name: geosciences-data-pipelines
+          token: ${{ secrets.GDP_GITHUB_TOKEN }}
