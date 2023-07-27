@@ -1,6 +1,5 @@
 package examples;
 
-
 import com.nasertamimi.geosciences.datapipelines.Downloader;
 import com.nasertamimi.geosciences.datapipelines.FIRMSFireDownloader;
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 
 public class FIRMSFireExample {
     private static Logger logger = LogManager.getLogger(FIRMSFireExample.class);
