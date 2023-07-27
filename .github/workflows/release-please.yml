@@ -17,4 +17,3 @@ jobs:
         with:
           release-type: maven
           package-name: geosciences-data-pipelines
-          token: ${{ secrets.GDP_GITHUB_TOKEN }}
