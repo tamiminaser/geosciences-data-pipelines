@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/tamiminaser/geosciences-data-pipelines/compare/v1.0.0...v1.0.1) (2023-07-27)
+
+
+### Bug Fixes
+
+* FIRMS example updated ([5ada405](https://github.com/tamiminaser/geosciences-data-pipelines/commit/5ada4058df9beaef1934945b5ed1187fcf47ff32))
+
 ## 1.0.0 (2023-07-27)
 
 
