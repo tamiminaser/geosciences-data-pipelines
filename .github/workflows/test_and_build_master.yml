@@ -16,7 +16,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    using: 'node12'
+    using: 'node16'
     environment: prod-env
     steps:
       - uses: actions/checkout@v3
