@@ -12,6 +12,7 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    using: 'node12'
     steps:
       - uses: google-github-actions/release-please-action@v3
         with:
