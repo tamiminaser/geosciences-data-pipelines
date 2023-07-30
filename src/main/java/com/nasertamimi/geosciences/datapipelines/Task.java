@@ -1,5 +1,10 @@
 package com.nasertamimi.geosciences.datapipelines;
 
+import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
+import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDataWriter;
+import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
+import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

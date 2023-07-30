@@ -1,5 +1,7 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.FIRMS;
 
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
+import com.nasertamimi.geosciences.datapipelines.core.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,30 +10,30 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class USGSEarthquakeDownloader extends Downloader{
-    public USGSEarthquakeDownloader(){
+public class FIRMSFireDownloader extends Downloader {
+    public FIRMSFireDownloader(){
         super();
     }
 
-    private static Logger logger = LogManager.getLogger(USGSEarthquakeDownloader.class);
+    private static Logger logger = LogManager.getLogger(FIRMSFireDownloader.class);
 
     public Path download(String startDate, String endDate) throws Exception{
         try {
-            GeoConn geoConn = new GeoConn();
+            FirmsConn fireConn = new FirmsConn();
             Request request = new Request();
 
-            String response = request.perform(geoConn.create(startDate, endDate));
+            String response = request.perform(fireConn.create(startDate));
 
-            //logger.info(response);
+            logger.info(response);
 
             long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
 
-            String baseDownloadPath = props.getProperty("earthquakeDownloadBasePath");
+            String baseDownloadPath = props.getProperty("fireDownloadBasePath");
 
             Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate));
 
             Files.createDirectories(path);
-            Path filepath = path.resolve(Paths.get("output.json"));
+            Path filepath = path.resolve(Paths.get("output.csv"));
             Files.writeString(filepath, response,  StandardCharsets.UTF_8);
 
             return path;

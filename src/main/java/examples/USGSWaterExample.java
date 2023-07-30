@@ -1,9 +1,9 @@
 package examples;
 
 
-import com.nasertamimi.geosciences.datapipelines.Downloader;
-import com.nasertamimi.geosciences.datapipelines.USGSEarthquakeDataWriter;
-import com.nasertamimi.geosciences.datapipelines.USGSEarthquakeDownloader;
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
+import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDataWriter;
+import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

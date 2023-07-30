@@ -1,5 +1,7 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.USGS.water;
 
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
+import com.nasertamimi.geosciences.datapipelines.core.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class USGSWaterDownloader extends Downloader{
+public class USGSWaterDownloader extends Downloader {
     public USGSWaterDownloader(){
         super();
     }

@@ -1,7 +1,8 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.USGS.earthquake;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nasertamimi.geosciences.datapipelines.core.DataWriter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

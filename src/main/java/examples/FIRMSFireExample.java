@@ -1,7 +1,7 @@
 package examples;
 
-import com.nasertamimi.geosciences.datapipelines.Downloader;
-import com.nasertamimi.geosciences.datapipelines.FIRMSFireDownloader;
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
+import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

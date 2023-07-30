@@ -1,4 +1,4 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.USGS.earthquake;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

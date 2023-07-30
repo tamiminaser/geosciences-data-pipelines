@@ -1,4 +1,4 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.core;
 
 import java.nio.file.Path;
 import java.io.FileInputStream;

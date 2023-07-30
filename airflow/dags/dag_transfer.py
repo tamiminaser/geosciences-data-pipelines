@@ -15,6 +15,6 @@ dag = DAG(
 
 transfer_dags_from_s3 = BashOperator(
     task_id="syncing",
-    bash_command=f"aws s3 sync s3://{S3_BUCKET_DAG}/dags /home/ubuntu/airflow/dags --exact-timestamps",
+    bash_command=f"aws s3 sync s3://{S3_BUCKET_DAG}/airflow/dags /home/ubuntu/airflow/dags --exact-timestamps",
     dag=dag,
 )

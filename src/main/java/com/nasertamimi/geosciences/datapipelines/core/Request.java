@@ -1,4 +1,4 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.core;
 
 import java.net.HttpURLConnection;
 import java.io.BufferedReader;
