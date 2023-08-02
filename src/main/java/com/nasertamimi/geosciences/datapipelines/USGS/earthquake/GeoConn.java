@@ -8,7 +8,7 @@ public class GeoConn {
     }
     public HttpURLConnection create(String startDate, String endDate) throws Exception{
 
-        String endpoint = String.format("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=%s&endtime=%s", startDate, endDate);
+        String endpoint = String.format("https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&starttime=%s&endtime=%s", startDate, endDate);
 
         // creating a connection
         URL url = new URL(endpoint);

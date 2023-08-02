@@ -26,14 +26,14 @@ public class USGSEarthquakeDownloader extends Downloader {
 
             //logger.info(response);
 
-            long runTime = System.currentTimeMillis(); //UTC Linux time in milliseconds
+            long runTime = System.currentTimeMillis() / 1000L; //Unix epoch time in seconds
 
             String baseDownloadPath = props.getProperty("earthquakeDownloadBasePath");
 
-            Path path = Paths.get(String.format("%s/start_date=%s/", baseDownloadPath, startDate));
+            Path path = Paths.get(String.format("%s/%s/start_date=%s/", baseDownloadPath, runTime, startDate));
 
             Files.createDirectories(path);
-            Path filepath = path.resolve(Paths.get("output.json"));
+            Path filepath = path.resolve(Paths.get("output.csv"));
             Files.writeString(filepath, response,  StandardCharsets.UTF_8);
 
             return path;

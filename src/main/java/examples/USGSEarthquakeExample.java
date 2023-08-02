@@ -1,9 +1,8 @@
 package examples;
 
 
-import com.nasertamimi.geosciences.datapipelines.core.Downloader;
-import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDataWriter;
 import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
+import com.nasertamimi.geosciences.datapipelines.core.Downloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +16,8 @@ public class USGSEarthquakeExample {
 
     public static void main( String[] args ) {
         try {
-            LocalDate startDate = LocalDate.parse("2023-04-20");
-            LocalDate endDate = LocalDate.parse("2023-04-20");
+            LocalDate startDate = LocalDate.parse("2023-06-20");
+            LocalDate endDate = LocalDate.parse("2023-06-25");
 
             Downloader downloader = new USGSEarthquakeDownloader();
 
@@ -33,15 +32,6 @@ public class USGSEarthquakeExample {
                 Path downloadedPath = downloader.download(runDateStr, nextDateStr);
                 logger.info(String.format("Download completed for %s.", runDateStr));
                 logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
-
-
-                USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
-
-                logger.info(String.format("Writing TSV file started for %s", runDateStr));
-                earthquakeDataWriter.write("tsv");
-
-                logger.info(String.format("Writing CSV file started for %s", runDateStr));
-                earthquakeDataWriter.write("csv");
 
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);

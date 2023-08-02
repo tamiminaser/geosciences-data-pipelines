@@ -9,7 +9,7 @@ public class Request {
     }
     public String perform(HttpURLConnection conn) throws Exception{
         // send the request
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in.readLine()) != null) {

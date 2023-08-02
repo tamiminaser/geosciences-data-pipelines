@@ -21,11 +21,15 @@ public class USGSEarthquakeDataWriter extends DataWriter {
         logger.info("Download Path is: "+ downloadedPath);
         this.downloadedPath = downloadedPath;
 
-        Path jsonFilePath = downloadedPath.resolve(Paths.get("output.json"));
+        Path jsonFilePath = downloadedPath.resolve(Paths.get("output.csv"));
         String jsonString = Files.readAllLines(jsonFilePath).get(0);
 
         ObjectMapper mapper = new ObjectMapper();
+
+        logger.info("Checkpoint B");
         JsonNode rootNode = mapper.readTree(jsonString);
+
+        logger.info("Checkpoint C");
         usgsEarthquakeEvent = new USGSEarthquakeEvent(rootNode);
     }
 
