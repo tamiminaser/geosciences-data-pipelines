@@ -1,7 +1,6 @@
 package com.nasertamimi.geosciences.datapipelines;
 
 import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
-import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDataWriter;
 import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
 import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
@@ -42,14 +41,6 @@ public class Task {
                 Path downloadedPath = downloader.download(runDateStr, nextDateStr);
                 logger.info(String.format("Download completed for %s.", runDateStr));
                 logger.info(String.format("Download Path is: %s", String.valueOf(downloadedPath)));
-
-                if (downloadType == "earthquake") {
-                    logger.info(String.format("Writing TSV file started for %s", runDateStr));
-                    USGSEarthquakeDataWriter earthquakeDataWriter = new USGSEarthquakeDataWriter(downloadedPath);
-                    earthquakeDataWriter.write("tsv");
-                } else if (downloadType == "fire") {
-                    logger.info(String.format("CSV file for %s is written to %s", runDateStr, downloadedPath));
-                }
 
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);
