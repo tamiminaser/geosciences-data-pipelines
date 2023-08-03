@@ -1,8 +1,9 @@
-package com.nasertamimi.geosciences.datapipelines;
+package com.nasertamimi.geosciences.datapipelines.examples;
 
-import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
+package com.nasertamimi.geosciences.datapipelines.example;
+
+
 import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
-import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,24 +12,16 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Task {
-    private static Logger logger = LogManager.getLogger(Task.class);
+
+public class USGSEarthquakeExample {
+    private static Logger logger = LogManager.getLogger(USGSEarthquakeExample.class);
 
     public static void main( String[] args ) {
         try {
-            LocalDate startDate = LocalDate.parse(System.getProperty("start_date"));
-            LocalDate endDate = LocalDate.parse(System.getProperty("end_date"));
-            String downloadType = System.getProperty("download_type");
+            LocalDate startDate = LocalDate.parse("2023-06-20");
+            LocalDate endDate = LocalDate.parse("2023-06-25");
 
-            Downloader downloader = null;
-
-            if (downloadType == "earthquake") {
-                downloader = new USGSEarthquakeDownloader();
-            } else if (downloadType == "water") {
-                downloader = new USGSWaterDownloader();
-            } else if (downloadType == "fire") {
-                downloader = new FIRMSFireDownloader();
-            }
+            Downloader downloader = new USGSEarthquakeDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
@@ -49,5 +42,7 @@ public class Task {
         } catch (Exception e) {
             logger.error("An error occurred: " + e.getMessage());
         }
+
+
     }
 }

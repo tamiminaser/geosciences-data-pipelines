@@ -1,8 +1,7 @@
-package examples;
-
+package com.nasertamimi.geosciences.datapipelines.examples;
 
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
-import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
+import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,16 +9,15 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
-public class USGSWaterExample {
-    private static Logger logger = LogManager.getLogger(USGSWaterExample.class);
+public class FIRMSFireExample {
+    private static Logger logger = LogManager.getLogger(FIRMSFireExample.class);
 
     public static void main( String[] args ) {
         try {
-            LocalDate startDate = LocalDate.parse("2023-04-20");
-            LocalDate endDate = LocalDate.parse("2023-04-20");
+            LocalDate startDate = LocalDate.parse("2023-07-20");
+            LocalDate endDate = LocalDate.parse("2023-07-20");
 
-            Downloader downloader = new USGSWaterDownloader();
+            Downloader downloader = new FIRMSFireDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
@@ -36,6 +34,7 @@ public class USGSWaterExample {
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);
             }
+
         } catch (Exception e) {
             logger.error("An error occurred: " + e.getMessage());
         }

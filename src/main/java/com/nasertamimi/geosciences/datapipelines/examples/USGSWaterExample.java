@@ -1,8 +1,10 @@
-package examples;
+package com.nasertamimi.geosciences.datapipelines.examples;
+
+package com.nasertamimi.geosciences.datapipelines.example;
 
 
-import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
+import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,15 +13,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class USGSEarthquakeExample {
-    private static Logger logger = LogManager.getLogger(USGSEarthquakeExample.class);
+public class USGSWaterExample {
+    private static Logger logger = LogManager.getLogger(USGSWaterExample.class);
 
     public static void main( String[] args ) {
         try {
-            LocalDate startDate = LocalDate.parse("2023-06-20");
-            LocalDate endDate = LocalDate.parse("2023-06-25");
+            LocalDate startDate = LocalDate.parse("2023-04-20");
+            LocalDate endDate = LocalDate.parse("2023-04-20");
 
-            Downloader downloader = new USGSEarthquakeDownloader();
+            Downloader downloader = new USGSWaterDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
@@ -36,7 +38,6 @@ public class USGSEarthquakeExample {
                 runDate = nextDate;
                 nextDate = nextDate.plusDays(1);
             }
-
         } catch (Exception e) {
             logger.error("An error occurred: " + e.getMessage());
         }

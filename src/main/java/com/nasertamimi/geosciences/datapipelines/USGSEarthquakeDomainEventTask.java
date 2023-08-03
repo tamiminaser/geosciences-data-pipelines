@@ -1,7 +1,7 @@
-package examples;
+package com.nasertamimi.geosciences.datapipelines;
 
+import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
-import com.nasertamimi.geosciences.datapipelines.FIRMS.FIRMSFireDownloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,15 +9,15 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class FIRMSFireExample {
-    private static Logger logger = LogManager.getLogger(FIRMSFireExample.class);
+public class USGSEarthquakeDomainEventTask {
+    private static Logger logger = LogManager.getLogger(USGSEarthquakeDomainEventTask.class);
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         try {
-            LocalDate startDate = LocalDate.parse("2023-07-20");
-            LocalDate endDate = LocalDate.parse("2023-07-20");
+            LocalDate startDate = LocalDate.parse(System.getProperty("start_date"));
+            LocalDate endDate = LocalDate.parse(System.getProperty("end_date"));
 
-            Downloader downloader = new FIRMSFireDownloader();
+            Downloader downloader = new USGSEarthquakeDownloader();
 
             LocalDate runDate = startDate;
             LocalDate nextDate = runDate.plusDays(1);
@@ -38,7 +38,5 @@ public class FIRMSFireExample {
         } catch (Exception e) {
             logger.error("An error occurred: " + e.getMessage());
         }
-
-
     }
 }
