@@ -1,8 +1,5 @@
 package com.nasertamimi.geosciences.datapipelines.examples;
 
-package com.nasertamimi.geosciences.datapipelines.example;
-
-
 import com.nasertamimi.geosciences.datapipelines.USGS.earthquake.USGSEarthquakeDownloader;
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
 import org.apache.logging.log4j.LogManager;

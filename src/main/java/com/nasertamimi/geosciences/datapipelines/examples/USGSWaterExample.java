@@ -1,8 +1,5 @@
 package com.nasertamimi.geosciences.datapipelines.examples;
 
-package com.nasertamimi.geosciences.datapipelines.example;
-
-
 import com.nasertamimi.geosciences.datapipelines.core.Downloader;
 import com.nasertamimi.geosciences.datapipelines.USGS.water.USGSWaterDownloader;
 import org.apache.logging.log4j.LogManager;
