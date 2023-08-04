@@ -29,7 +29,7 @@ end_task = DummyOperator(task_id='end', dag=dag)
 usgs_earthquake_download_daily = BashOperator(
     task_id='usgs_earthquake_download_daily',
     dag=dag,
-    bash_command=f"java -Ddownload_type='earthquake' -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Ddownload_type='earthquake' -Dstart_date={run_date} -Dend_date={run_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
 usgs_earthquake_transfer_data_to_s3 = BashOperator(
@@ -42,7 +42,7 @@ usgs_earthquake_transfer_data_to_s3 = BashOperator(
 firms_fire_download_daily = BashOperator(
     task_id='firms_fire_download_daily',
     dag=dag,
-    bash_command=f"java -Ddownload_type='fire' -Dstart_date={run_date} -Dend_date={run_date} -download_type=earthquake -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
+    bash_command=f"java -Ddownload_type='fire' -Dstart_date={run_date} -Dend_date={run_date} -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
 firms_fire_transfer_data_to_s3 = BashOperator(
