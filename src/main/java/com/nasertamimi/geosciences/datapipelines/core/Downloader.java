@@ -10,7 +10,7 @@ public abstract class Downloader {
     public Downloader() {
         props = new Properties();
         try {
-            FileInputStream in = new FileInputStream("/config.properties");
+            FileInputStream in = new FileInputStream("src/main/resources/config.properties");
             props.load(in);
             in.close();
         } catch (IOException e) {
