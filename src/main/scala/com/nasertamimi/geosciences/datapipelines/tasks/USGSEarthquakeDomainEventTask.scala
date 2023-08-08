@@ -12,6 +12,9 @@ object USGSEarthquakeDomainEventTask {
 
     def main(args: Array[String]): Unit = {
             val logger = LogManager.getLogger(this.getClass)
+            logger.info("Start USGS Earthquake Task.")
+            logger.info(s"Start Date: ${System.getProperty("start_date")}")
+            logger.info(s"End Date: ${System.getProperty("end_date")}")
 
             val startDate = LocalDate.parse(System.getProperty("start_date"))
             val endDate = LocalDate.parse(System.getProperty("end_date"))
