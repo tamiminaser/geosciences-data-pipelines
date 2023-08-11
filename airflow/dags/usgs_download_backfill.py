@@ -4,7 +4,7 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime
 
-S3_BUCKET_DAG = Variable.get("S3_BUCKET_DAG")
+S3_BUCKET = Variable.get("S3_BUCKET")
 
 start_date = '{{dag_run.conf["start_date"]}}'
 end_date = '{{dag_run.conf["end_date"]}}'
@@ -33,9 +33,23 @@ usgs_earthquake_download_backfill = BashOperator(
     bash_command=f"java -Ddownload_type='earthquake' -Dstart_date={start_date} -Dend_date={end_date}  -jar ~/airflow/resources/jars/earthquakeAPI-1.0.1-SNAPSHOT-shaded.jar"
 )
 
+usgs_earthquake_download_backfill_spark = BashOperator(
+    task_id='usgs_earthquake_download_backfill_spark',
+    dag=dag,
+    bash_command=f""""
+        spark-submit 
+            --driver-java-options "-Djava.home=/etc/alternatives/jre_11" 
+            --class com.nasertamimi.geosciences.datapipelines.tasks.USGSEarthquakeDomainEventTask 
+            --master local 
+            --conf spark.driver.extraJavaOptions="-Dstart_date={start_date} -Dend_date={end_date}" 
+            --conf spark.executor.extraJavaOptions="-Dstart_date={start_date} -Dend_date={end_date}"  
+            s3://{S3_BUCKET}/jars/GeosciencesDataPipelines-1.1.1-SNAPSHOT-jar-with-dependencies.jar
+    """
+)
+
 usgs_earthquake_transfer_data_to_s3 = BashOperator(
     task_id="transfer_data_to_s3",
-    bash_command=f"aws s3 sync /tmp/EarthDataLake/earthquakeAPI/source=USGS s3://{S3_BUCKET_DAG}/data/EarthDataLake/earthquakeAPI/source=USGS --exact-timestamps",
+    bash_command=f"aws s3 sync /tmp/EarthDataLake/earthquakeAPI/source=USGS s3://{S3_BUCKET}/data/EarthDataLake/earthquakeAPI/source=USGS --exact-timestamps",
     dag=dag,
 )
 
@@ -48,10 +62,10 @@ firms_fire_download_backfill = BashOperator(
 
 firms_fire_transfer_data_to_s3 = BashOperator(
     task_id="transfer_data_to_s3",
-    bash_command=f"aws s3 sync /tmp/EarthDataLake/fireAPI/source=FRIMS s3://{S3_BUCKET_DAG}/data/EarthDataLake/fireAPI/source=FRIMS --exact-timestamps",
+    bash_command=f"aws s3 sync /tmp/EarthDataLake/fireAPI/source=FRIMS s3://{S3_BUCKET}/data/EarthDataLake/fireAPI/source=FRIMS --exact-timestamps",
     dag=dag,
 )
 
 # Dependencies
-start_task >> usgs_earthquake_download_backfill >> usgs_earthquake_transfer_data_to_s3 >> end_task
+start_task >> usgs_earthquake_download_backfill_spark >> usgs_earthquake_transfer_data_to_s3 >> end_task
 start_task >> firms_fire_download_backfill >> firms_fire_transfer_data_to_s3 >> end_task
