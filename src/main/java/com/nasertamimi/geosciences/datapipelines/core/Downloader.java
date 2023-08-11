@@ -1,5 +1,6 @@
 package com.nasertamimi.geosciences.datapipelines.core;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Properties;
@@ -9,7 +10,7 @@ public abstract class Downloader {
     public Downloader() {
         props = loadProperties("config.properties");
     }
-    public abstract Path download(String startDate, String endDate) throws Exception;
+    public abstract Path download(String startDate, String endDate) throws IOException;
 
     public static Properties loadProperties(String fileName) {
         Properties properties = new Properties();

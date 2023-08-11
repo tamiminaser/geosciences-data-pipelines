@@ -5,6 +5,7 @@ import com.nasertamimi.geosciences.datapipelines.core.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +18,7 @@ public class FIRMSFireDownloader extends Downloader {
 
     private static Logger logger = LogManager.getLogger(FIRMSFireDownloader.class);
 
-    public Path download(String startDate, String endDate) throws Exception{
+    public Path download(String startDate, String endDate) throws IOException{
         try {
             FirmsConn fireConn = new FirmsConn();
             Request request = new Request();
