@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="earthquakeAPI" />
+        <module name="GeosciencesDataPipelines" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="earthquakeAPI" target="11" />
       <module name="geoscience-data-pipelines" target="11" />
       <module name="GeosciencesDataPipeline" target="11" />
-      <module name="GeosciencesDataPipelines" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -29,6 +29,7 @@ public class USGSEarthquakeDownloader extends Downloader {
             long runTime = System.currentTimeMillis() / 1000L; //Unix epoch time in seconds
 
             String baseDownloadPath = props.getProperty("earthquakeDownloadBasePath");
+            logger.info(String.format("Base Download Path: {}", baseDownloadPath));
 
             Path path = Paths.get(String.format("%s/%s/start_date=%s/", baseDownloadPath, runTime, startDate));
 

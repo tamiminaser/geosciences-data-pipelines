@@ -1,8 +1,8 @@
 package com.nasertamimi.geosciences.datapipelines.core;
 
-import java.nio.file.Path;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Properties;
 
 public abstract class Downloader {
@@ -10,7 +10,7 @@ public abstract class Downloader {
     public Downloader() {
         props = new Properties();
         try {
-            FileInputStream in = new FileInputStream("src/main/resources/config.properties");
+            InputStream in = Downloader.class.getResourceAsStream("/config.properties");
             props.load(in);
             in.close();
         } catch (IOException e) {
