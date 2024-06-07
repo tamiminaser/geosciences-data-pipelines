@@ -16,4 +16,3 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 src/main/resources/application-dev.properties
-.idea
