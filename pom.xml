@@ -19,6 +19,13 @@
     <tag>HEAD</tag>
   </scm>
 
+  <repositories>
+    <repository>
+      <id>mvnrepository</id>
+      <url>https://mvnrepository.com/artifact</url>
+    </repository>
+  </repositories>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
@@ -58,6 +65,12 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.15.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.scalatest/scalatest -->
+    <dependency>
+      <groupId>org.scalatest</groupId>
+      <artifactId>scalatest_3</artifactId>
+      <version>3.2.16</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -81,6 +94,7 @@
           <execution>
             <goals>
               <goal>compile</goal>
+              <goal>testCompile</goal>
             </goals>
           </execution>
         </executions>
